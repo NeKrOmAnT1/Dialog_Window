@@ -7,22 +7,30 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListBox ItemsSource="{Binding ListProduct}" SelectedItem="{Binding SelectedProduct}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Path=Name}"/>
-                        <TextBlock Text="{Binding Path=Price}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-            <Button Click="Button_Click" Content="Добавить"  Height="40" Width="200" Margin="5"/>
-            <Button Click="Button_Click_1" Content="Редактировать" Height="40" Width="200" Margin="5"/>
-            <Button Click="Button_Click_2" Content="Удалить" Height="40" Width="200" Margin="5"/>
-
+        <ScrollViewer >
+            <ListBox ItemsSource="{Binding ListProduct}" SelectedItem="{Binding SelectedProduct}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="Уникальный идентификатор: "/>
+                            <TextBlock Text="{Binding Path=ID}"/>
+                            <TextBlock Text="Имя товара: "/>
+                            <TextBlock Text="{Binding Path=Name}" />
+                            <TextBlock Text="Описание товара: "/>
+                            <TextBlock Text="{Binding Path=Description}"/>
+                            <TextBlock Text="Цена товара: "/>
+                            <TextBlock Text="{Binding Path=Price}"/>
+                            <Image Source="{Binding Path=QRCode}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="85,0,0,0">
+            <Button x:Name="btn_add" Click="btn_add_Click"  Content="Добавить"  Height="40" Width="200" Margin="5"/>
+            <Button x:Name="btn_edit" Click="btn_edit_Click"  Content="Редактировать" Height="40" Width="200" Margin="5"/>
+            <Button x:Name="btn_delete" Click="btn_delete_Click"  Content="Удалить" Height="40" Width="200" Margin="5"/>
         </StackPanel>
-
     </Grid>
+
 </Window>

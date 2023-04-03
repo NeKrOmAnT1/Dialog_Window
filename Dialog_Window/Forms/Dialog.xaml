@@ -5,12 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dialog_Window.Forms"
         mc:Ignorable="d"
-        Title="Dialog" Height="450" Width="800">
+        Title="Dialog" Height="460" Width="800">
     <Grid>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="100">
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
+            <TextBlock Text="Имя товара:" TextAlignment="Center" FontSize="15"/>
             <TextBox Text="{Binding Name}"  TextWrapping="Wrap" Margin="5"  Width="260" Height="60"/>
-        <TextBox Text="{Binding Price}"  TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
-        <Button  Click="Button_Click" Content="Добавить"  Height="43" Margin="5" Width="190"/>
+            <TextBlock Text="Описание товара: " TextAlignment="Center" FontSize="15"/>
+            <TextBox Text="{Binding Description}"  TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
+            <TextBlock Text="Цена товара:" TextAlignment="Center" FontSize="15"/>
+            <TextBox Text="{Binding Price}"  TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
+            <TextBlock Text="Уникальный идентификатор" TextAlignment="Center" FontSize="15"/>
+            <TextBox Text="{Binding ID}" Name="tb_id" IsReadOnly="True"  TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btn_add"  Click="btn_add_Click"  Content="Добавить"  Height="43" Margin="5" Width="190"/>
+                <Button x:Name="btn_qrcode" Click="btn_qrcode_Click" Content="Создать QR-Code" Height="43" Width="190"/>
+            </StackPanel>
         </StackPanel>
+
+        <Image Source="{Binding QRCode}" x:Name="image_qrcoder" Width="auto" Margin="62,150,588,150" Height="auto"/>
+        
+        <TextBlock HorizontalAlignment="Left" Margin="100,280,0,0" TextWrapping="Wrap" Text="QR-Code" FontSize="15" VerticalAlignment="Top"/>
+
+
     </Grid>
 </Window>

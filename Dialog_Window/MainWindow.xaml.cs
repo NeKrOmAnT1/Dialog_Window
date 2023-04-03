@@ -18,9 +18,13 @@ using System.Windows.Shapes;
 
 namespace Dialog_Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+        //1. Решить вопрос с GUID
+        //2. Перенос QRCode в другое окно
+        //3. QRCode должен выдавать JSON
+        //4. Сделать привязку к базе данных (легко)
+        //5. Поработать со стилизацией (Вероятнее всего через Column и Row)
+
+
     public partial class MainWindow : Window
     {
         public ObservableCollection<Product> ListProduct { get; set; }
@@ -32,24 +36,24 @@ namespace Dialog_Window
             DataContext = this;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btn_add_Click(object sender, RoutedEventArgs e)
         {
             Forms.Dialog add = new Forms.Dialog();
             add.ShowDialog();
             ListProduct.Add(add.Product);
         }
+       
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void btn_edit_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedProduct == null)
                 return;
 
             Dialog dialog = new Dialog(SelectedProduct);
             dialog.ShowDialog();
-           // ListProduct.Add(dialog.Product);
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void btn_delete_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedProduct == null)
                 return;
@@ -59,10 +63,7 @@ namespace Dialog_Window
             {
                 ListProduct.Remove(dialog.Product);
             }
-            else
-            {
-                MessageBox.Show("Понял");
-            }
+           
         }
     }
 }

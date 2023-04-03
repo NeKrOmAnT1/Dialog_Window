@@ -1,6 +1,9 @@
 ﻿using Dialog_Window.Models;
+using QRCoder;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +24,7 @@ namespace Dialog_Window.Forms
     public partial class Dialog : Window
     {
         public Product Product { get; set; }
+       
         public Dialog()
         {
             InitializeComponent();
@@ -32,14 +36,35 @@ namespace Dialog_Window.Forms
             InitializeComponent();
             Product = product;
             DataContext = Product;
+          
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btn_add_Click(object sender, RoutedEventArgs e)
         {
-           
-                this.Close();
-
-            
+            this.Close();
         }
+        
+
+        private void btn_qrcode_Click(object sender, RoutedEventArgs e)
+        {
+            QRCodeGenerator qrGenerator = new();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(tb_id.Text, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap qr = qrCode.GetGraphic(150);
+            image_qrcoder.Source = Convert(qr);
+        }
+        public BitmapImage Convert(Bitmap src)
+        {
+            MemoryStream ms = new MemoryStream();
+            ((System.Drawing.Bitmap)src).Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            ms.Seek(0, SeekOrigin.Begin);
+            image.StreamSource = ms;
+            image.EndInit();
+            return image;
+
+        }
+
     }
 }
