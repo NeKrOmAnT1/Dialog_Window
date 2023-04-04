@@ -17,9 +17,9 @@
             <TextBox Text="{Binding Price}"  TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
             <TextBlock Text="Уникальный идентификатор" TextAlignment="Center" FontSize="15"/>
             <TextBox Text="{Binding ID}" Name="tb_id" IsReadOnly="True"  TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btn_qrcode"  Click="btn_qrcode_Click"  Content="Сгенерировать QR-Code"  Height="43" Margin="5" Width="190"/>
                 <Button x:Name="btn_add"  Click="btn_add_Click"  Content="Добавить"  Height="43" Margin="5" Width="190"/>
-                <Button x:Name="btn_qrcode" Click="btn_qrcode_Click" Content="Создать QR-Code" Height="43" Width="190"/>
             </StackPanel>
         </StackPanel>
 

@@ -12,7 +12,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
             <ScrollViewer >
-            <ListBox Grid.Row="0" ItemsSource="{Binding ListProduct}" SelectedItem="{Binding SelectedProduct}">
+            <ListBox Grid.Row="0"  ItemsSource="{Binding ListProduct}" SelectedItem="{Binding SelectedProduct}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
@@ -25,7 +25,8 @@
                             <TextBlock Text="Цена товара: "/>
                             <TextBlock Text="{Binding Path=Price}"/>
                             <TextBlock Text="QR-Code: "/>
-                            <Image Source="{Binding Path=QRCode}" />
+                            <Image Source="{Binding Path=QRCode}" Width="auto" Height="auto" />
+                            
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

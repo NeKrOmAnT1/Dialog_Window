@@ -24,27 +24,41 @@ namespace Dialog_Window.Forms
     public partial class Dialog : Window
     {
         public Product Product { get; set; }
+        
        
         public Dialog()
         {
             InitializeComponent();
             Product = new Product();
             DataContext = Product;
+            Product.ID = Guid.NewGuid();
+            
+            //QRCodeGenerator qrGenerator = new();
+            //QRCodeData qrCodeData = qrGenerator.CreateQrCode(tb_id.Text, QRCodeGenerator.ECCLevel.Q);
+            //QRCode qrCode = new QRCode(qrCodeData);
+            //Bitmap qr = qrCode.GetGraphic(150);
+            //image_qrcoder.Source = Convert(qr);
+            // В таком случае QR-Code не считывается и не изменяется
         }
         public Dialog(Product product)
         {
             InitializeComponent();
             Product = product;
             DataContext = Product;
-          
+
+            //QRCodeGenerator qrGenerator = new();
+            //QRCodeData qrCodeData = qrGenerator.CreateQrCode(tb_id.Text, QRCodeGenerator.ECCLevel.Q);
+            //QRCode qrCode = new QRCode(qrCodeData);
+            //Bitmap qr = qrCode.GetGraphic(150);
+            //image_qrcoder.Source = Convert(qr);
+            //Проблема решится сразу же после того, как QR-Code появится в первом окне WPF
+
         }
 
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-        
-
         private void btn_qrcode_Click(object sender, RoutedEventArgs e)
         {
             QRCodeGenerator qrGenerator = new();
@@ -52,7 +66,9 @@ namespace Dialog_Window.Forms
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qr = qrCode.GetGraphic(150);
             image_qrcoder.Source = Convert(qr);
+
         }
+       
         public BitmapImage Convert(Bitmap src)
         {
             MemoryStream ms = new MemoryStream();
@@ -63,8 +79,6 @@ namespace Dialog_Window.Forms
             image.StreamSource = ms;
             image.EndInit();
             return image;
-
         }
-
     }
 }

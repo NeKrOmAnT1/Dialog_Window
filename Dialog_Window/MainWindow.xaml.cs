@@ -18,11 +18,10 @@ using System.Windows.Shapes;
 
 namespace Dialog_Window
 {
-        //1. Решить вопрос с GUID
         //2. Перенос QRCode в другое окно
         //3. QRCode должен выдавать JSON
-        //4. Сделать привязку к базе данных (легко)
-        //5. Поработать со стилизацией (Вероятнее всего через Column и Row)
+        //4. Сделать привязку к базе данных
+        //5. Поработать со стилизацией (через Column и Row)
 
 
     public partial class MainWindow : Window
