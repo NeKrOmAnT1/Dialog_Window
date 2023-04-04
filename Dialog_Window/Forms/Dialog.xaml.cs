@@ -1,4 +1,5 @@
 ﻿using Dialog_Window.Models;
+using ModernWpf;
 using QRCoder;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,8 @@ namespace Dialog_Window.Forms
         public Dialog()
         {
             InitializeComponent();
+
+
             Product = new Product();
             DataContext = Product;
             Product.ID = Guid.NewGuid();

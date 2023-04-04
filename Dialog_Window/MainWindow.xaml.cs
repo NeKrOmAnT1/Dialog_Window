@@ -1,5 +1,6 @@
 ﻿using Dialog_Window.Forms;
 using Dialog_Window.Models;
+using ModernWpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,6 +32,7 @@ namespace Dialog_Window
         public MainWindow()
         {
             InitializeComponent();
+            ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
             ListProduct = new();
             DataContext = this;
         }
@@ -57,7 +59,7 @@ namespace Dialog_Window
             if (SelectedProduct == null)
                 return;
             Dialog dialog = new Dialog(SelectedProduct);
-            MessageBoxResult messageBoxResult = MessageBox.Show("Ты уверен?", "Уверен", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult messageBoxResult = MessageBox.Show("Вы уверены?", "Удалить", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 ListProduct.Remove(dialog.Product);

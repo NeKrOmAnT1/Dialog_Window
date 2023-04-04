@@ -4,17 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dialog_Window.Forms"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d"
-        Title="Dialog" Height="460" Width="800">
+        Title="Add ptoduct cards" Height="460" Width="800" WindowStartupLocation="CenterScreen"
+        ui:WindowHelper.UseModernWindowStyle="True">
     <Grid>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
             <TextBlock Text="Имя товара:" TextAlignment="Center" FontSize="15"/>
-            <TextBox Text="{Binding Name}"  TextWrapping="Wrap" Margin="5"  Width="260" Height="60"/>
+            <TextBox Text="{Binding Name}" TextWrapping="Wrap" Margin="5"  Width="260" Height="60"/>
             <TextBlock Text="Описание товара: " TextAlignment="Center" FontSize="15"/>
             <TextBox Text="{Binding Description}"  TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
             <TextBlock Text="Цена товара:" TextAlignment="Center" FontSize="15"/>
-            <TextBox Text="{Binding Price}"  TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
+            <TextBox Text="{Binding Price}"    TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
             <TextBlock Text="Уникальный идентификатор" TextAlignment="Center" FontSize="15"/>
             <TextBox Text="{Binding ID}" Name="tb_id" IsReadOnly="True"  TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
