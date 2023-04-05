@@ -35,13 +35,7 @@ namespace Dialog_Window.Forms
             Product = new Product();
             DataContext = Product;
             Product.ID = Guid.NewGuid();
-            
-            //QRCodeGenerator qrGenerator = new();
-            //QRCodeData qrCodeData = qrGenerator.CreateQrCode(tb_id.Text, QRCodeGenerator.ECCLevel.Q);
-            //QRCode qrCode = new QRCode(qrCodeData);
-            //Bitmap qr = qrCode.GetGraphic(150);
-            //image_qrcoder.Source = Convert(qr);
-            // В таком случае QR-Code не считывается и не изменяется
+           
         }
         public Dialog(Product product)
         {
@@ -49,17 +43,16 @@ namespace Dialog_Window.Forms
             Product = product;
             DataContext = Product;
 
-            //QRCodeGenerator qrGenerator = new();
-            //QRCodeData qrCodeData = qrGenerator.CreateQrCode(tb_id.Text, QRCodeGenerator.ECCLevel.Q);
-            //QRCode qrCode = new QRCode(qrCodeData);
-            //Bitmap qr = qrCode.GetGraphic(150);
-            //image_qrcoder.Source = Convert(qr);
-            //Проблема решится сразу же после того, как QR-Code появится в первом окне WPF
-
         }
 
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
+            if (Product.QRCode == null)
+            {
+                MessageBox.Show("Необходимо сгенерировать QR-Code");
+                return;
+            }
+            else
             this.Close();
         }
         private void btn_qrcode_Click(object sender, RoutedEventArgs e)
@@ -69,6 +62,7 @@ namespace Dialog_Window.Forms
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qr = qrCode.GetGraphic(150);
             image_qrcoder.Source = Convert(qr);
+            Product.QRCode=Convert(qr);
 
         }
        
