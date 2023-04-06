@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.DirectoryServices;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -12,19 +14,22 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 
 namespace Dialog_Window.Models
 {
     public class Product
     {
+        [Key]
+        public Guid ID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
 
-        public Guid ID { get; set; }
         public string Description { get; set; }
 
-        public ImageSource QRCode { get; set; }
+        [NotMapped] public ImageSource QRCode { get; set; }
 
 
     }
+  
 }

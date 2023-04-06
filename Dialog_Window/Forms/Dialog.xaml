@@ -13,11 +13,11 @@
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
             <TextBlock Text="Имя товара:"  TextAlignment="Center" FontSize="15"/>
-            <TextBox Text="{Binding Name}" TextWrapping="Wrap" Margin="5"  Width="260" Height="60"/>
+            <TextBox Text="{Binding Name}" Name="tb_name" TextWrapping="Wrap" Margin="5"  Width="260" Height="60"/>
             <TextBlock Text="Описание товара: " TextAlignment="Center" FontSize="15"/>
-            <TextBox Text="{Binding Description}"  TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
+            <TextBox Text="{Binding Description}" Name="tb_description"  TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
             <TextBlock Text="Цена товара:" TextAlignment="Center" FontSize="15"/>
-            <TextBox Text="{Binding Price}"    TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
+            <TextBox Text="{Binding Price}" Name="tb_price"   TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
             <TextBlock Text="Уникальный идентификатор" TextAlignment="Center" FontSize="15"/>
             <TextBox Text="{Binding ID}" Name="tb_id" IsReadOnly="True"  TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

@@ -19,10 +19,6 @@ using System.Windows.Shapes;
 
 namespace Dialog_Window
 {
-        //3. QRCode должен выдавать метод, который объединяет в одну строку такие строки, как Prise, Name, ID, Description
-        //4. Сделать привязку к базе данных(Могут возникнуть проблемы с изображением QR-Code и БД)
-        //5. Поработать со стилизацией (через Column и Row)
-
 
     public partial class MainWindow : Window
     {

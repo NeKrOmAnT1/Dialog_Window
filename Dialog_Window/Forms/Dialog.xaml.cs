@@ -1,4 +1,5 @@
 ﻿using Dialog_Window.Models;
+using Microsoft.EntityFrameworkCore;
 using ModernWpf;
 using QRCoder;
 using System;
@@ -53,17 +54,24 @@ namespace Dialog_Window.Forms
                 return;
             }
             else
-            this.Close();
+            {
+                //DBsqlite ef = new DBsqlite();
+                //ef.Database.Migrate();
+                //DatabaseContext databaseContext=new DatabaseContext();
+                //databaseContext.Database.Migrate();
+                this.Close();
+            }
         }
         private void btn_qrcode_Click(object sender, RoutedEventArgs e)
         {
+            string combined="Уникальный идентификатор: "+tb_id.Text+"\r\n"+"Имя товара: "+tb_name.Text+ "\r\n"+"Описание товара: "+tb_description.Text+ "\r\n"+"Цена товара: "+tb_price.Text+" рублей";
             QRCodeGenerator qrGenerator = new();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(tb_id.Text, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(combined, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qr = qrCode.GetGraphic(150);
             image_qrcoder.Source = Convert(qr);
-            Product.QRCode=Convert(qr);
-
+            Product.QRCode = Convert(qr);
+            
         }
        
         public BitmapImage Convert(Bitmap src)
@@ -77,5 +85,6 @@ namespace Dialog_Window.Forms
             image.EndInit();
             return image;
         }
+     
     }
 }
