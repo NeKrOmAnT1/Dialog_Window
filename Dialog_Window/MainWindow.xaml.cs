@@ -19,7 +19,7 @@ using System.Windows.Shapes;
 
 namespace Dialog_Window
 {
-
+    //Добавить данные в бд
     public partial class MainWindow : Window
     {
         public ObservableCollection<Product> ListProduct { get; set; }

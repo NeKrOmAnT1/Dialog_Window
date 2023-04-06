@@ -1,5 +1,7 @@
 ﻿using Dialog_Window.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using Microsoft.EntityFrameworkCore.Storage;
 using ModernWpf;
 using QRCoder;
 using System;
@@ -32,11 +34,9 @@ namespace Dialog_Window.Forms
         {
             InitializeComponent();
 
-
             Product = new Product();
             DataContext = Product;
             Product.ID = Guid.NewGuid();
-           
         }
         public Dialog(Product product)
         {
@@ -48,32 +48,50 @@ namespace Dialog_Window.Forms
 
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
+
             if (Product.QRCode == null)
             {
                 MessageBox.Show("Необходимо сгенерировать QR-Code");
                 return;
             }
+          
             else
             {
-                //DBsqlite ef = new DBsqlite();
-                //ef.Database.Migrate();
-                //DatabaseContext databaseContext=new DatabaseContext();
-                //databaseContext.Database.Migrate();
+                try
+                {
+                    Sqlite sqlite = new Sqlite();
+                    sqlite.Database.Migrate();
+                    Product product = new Product
+                    {
+                        Price = Product.Price,
+                        Name = Product.Name,
+                        ID = Guid.NewGuid(),
+                        Description = Product.Description
+                    };
+                    sqlite.Products.Add(product);
+                    sqlite.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+              
                 this.Close();
             }
         }
         private void btn_qrcode_Click(object sender, RoutedEventArgs e)
         {
-            string combined="Уникальный идентификатор: "+tb_id.Text+"\r\n"+"Имя товара: "+tb_name.Text+ "\r\n"+"Описание товара: "+tb_description.Text+ "\r\n"+"Цена товара: "+tb_price.Text+" рублей";
+            string combined = "Уникальный идентификатор: " + tb_id.Text + "\r\n" + "Имя товара: " + tb_name.Text + "\r\n" + "Описание товара: " + tb_description.Text + "\r\n" + "Цена товара: " + tb_price.Text + " рублей";
             QRCodeGenerator qrGenerator = new();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(combined, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qr = qrCode.GetGraphic(150);
             image_qrcoder.Source = Convert(qr);
             Product.QRCode = Convert(qr);
-            
+
         }
-       
+
         public BitmapImage Convert(Bitmap src)
         {
             MemoryStream ms = new MemoryStream();
