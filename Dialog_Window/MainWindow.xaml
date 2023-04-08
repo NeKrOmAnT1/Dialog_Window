@@ -14,7 +14,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
             <ScrollViewer >
-            <ListBox Grid.Row="0"  ItemsSource="{Binding ListProduct}" SelectedItem="{Binding SelectedProduct}">
+            <ListBox x:Name="ProductsList" Grid.Row="0"  ItemsSource="{Binding ListProduct}" SelectedItem="{Binding SelectedProduct}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
@@ -34,10 +34,11 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </ScrollViewer>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="85,0,0,0">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" >
             <Button x:Name="btn_add" Click="btn_add_Click"  Content="Добавить"  Height="40" Width="200" Margin="5"/>
             <Button x:Name="btn_edit" Click="btn_edit_Click" Content="Редактировать" Height="40" Width="200" Margin="5"/>
             <Button x:Name="btn_delete" Click="btn_delete_Click"  Content="Удалить" Height="40" Width="200" Margin="5"/>
+            <Button x:Name="btn_update" Click="btn_update_Click" Content="Обновить" Margin="5" Height="40" Width="200" />
         </StackPanel>
     </Grid>
 

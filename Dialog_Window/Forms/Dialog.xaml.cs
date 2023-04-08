@@ -19,12 +19,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Dialog_Window.Forms
 {
-    /// <summary>
-    /// Логика взаимодействия для Dialog.xaml
-    /// </summary>
+   
     public partial class Dialog : Window
     {
         public Product Product { get; set; }
@@ -33,19 +32,10 @@ namespace Dialog_Window.Forms
         public Dialog()
         {
             InitializeComponent();
-
             Product = new Product();
             DataContext = Product;
             Product.ID = Guid.NewGuid();
         }
-        public Dialog(Product product)
-        {
-            InitializeComponent();
-            Product = product;
-            DataContext = Product;
-
-        }
-
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
 
@@ -60,7 +50,6 @@ namespace Dialog_Window.Forms
                 try
                 {
                     Sqlite sqlite = new Sqlite();
-                    sqlite.Database.Migrate();
                     Product product = new Product
                     {
                         Price = Product.Price,
@@ -68,30 +57,33 @@ namespace Dialog_Window.Forms
                         ID = Guid.NewGuid(),
                         Description = Product.Description
                     };
+
+                    string show = "Уникальный идентификатор: " + Product.ID + "\r\n" + "Имя товара: " + Product.Name + "\r\n" + "Описание товара: " + Product.Description + "\r\n" + "Цена товара: " + Product.Price + " RUB";
+                    MessageBox.Show(show, "Данные, занесенные в базу данных");
+
                     sqlite.Products.Add(product);
                     sqlite.SaveChanges();
+
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                     return;
                 }
-              
                 this.Close();
             }
         }
         private void btn_qrcode_Click(object sender, RoutedEventArgs e)
         {
-            string combined = "Уникальный идентификатор: " + tb_id.Text + "\r\n" + "Имя товара: " + tb_name.Text + "\r\n" + "Описание товара: " + tb_description.Text + "\r\n" + "Цена товара: " + tb_price.Text + " рублей";
+            string combined = "Уникальный идентификатор: " + tb_id.Text + "\r\n" + "Имя товара: " + tb_name.Text + "\r\n" + "Описание товара: " + tb_description.Text + "\r\n" + "Цена товара: " + tb_price.Text + " RUB";
             QRCodeGenerator qrGenerator = new();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(combined, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qr = qrCode.GetGraphic(150);
             image_qrcoder.Source = Convert(qr);
             Product.QRCode = Convert(qr);
-
         }
-
+        #region BitmapImage Convert for QR-Code 
         public BitmapImage Convert(Bitmap src)
         {
             MemoryStream ms = new MemoryStream();
@@ -103,6 +95,7 @@ namespace Dialog_Window.Forms
             image.EndInit();
             return image;
         }
-     
+        #endregion
+
     }
 }
