@@ -26,7 +26,6 @@ namespace Dialog_Window
          изображение QR-Code
          */
         public ObservableCollection<Product> ListProduct { get; set; }
-        public Product SelectedProduct { get; set; }
 
         public MainWindow()
         {
@@ -35,10 +34,12 @@ namespace Dialog_Window
             ListProduct = new();
             DataContext = this;
             this.Loaded += Sqlite_Loaded;
+
         }
         private void Sqlite_Loaded(object sender, RoutedEventArgs e)
         {
             Sqlite sqlite = new Sqlite();
+            sqlite.Database.Migrate();
             List<Product> products = sqlite.Products.ToList();
             ProductsList.ItemsSource = products;
         }
@@ -92,6 +93,7 @@ namespace Dialog_Window
             using (var context = new Sqlite())
             {
                 ProductsList.ItemsSource = context.Products.ToList();
+                
             }
         }
     }

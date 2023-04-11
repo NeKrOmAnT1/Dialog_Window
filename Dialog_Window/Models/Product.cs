@@ -1,4 +1,5 @@
-﻿using QRCoder;
+﻿using Microsoft.EntityFrameworkCore;
+using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,11 +24,12 @@ namespace Dialog_Window.Models
         [Key]
         public Guid ID { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         public string Description { get; set; }
 
         [NotMapped] public ImageSource QRCode { get; set; }
+     
 
 
     }

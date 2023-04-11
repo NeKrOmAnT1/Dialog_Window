@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dialog_Window.Migrations
 {
     [DbContext(typeof(Sqlite))]
-    [Migration("20230406082507_n4")]
-    partial class n4
+    [Migration("20230411115446_v23")]
+    partial class v23
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,8 +34,8 @@ namespace Dialog_Window.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("TEXT");
+                    b.Property<double>("Price")
+                        .HasColumnType("REAL");
 
                     b.HasKey("ID");
 

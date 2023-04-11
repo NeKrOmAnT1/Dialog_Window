@@ -75,13 +75,14 @@ namespace Dialog_Window.Forms
         }
         private void btn_qrcode_Click(object sender, RoutedEventArgs e)
         {
-            string combined = "Уникальный идентификатор: " + tb_id.Text + "\r\n" + "Имя товара: " + tb_name.Text + "\r\n" + "Описание товара: " + tb_description.Text + "\r\n" + "Цена товара: " + tb_price.Text + " RUB";
+            string combined = "Уникальный идентификатор: " + Product.ID + "\r\n" + "Имя товара: " + Product.Name + "\r\n" + "Описание товара: " + Product.Description + "\r\n" + "Цена товара: " + Product.Price + " RUB";
             QRCodeGenerator qrGenerator = new();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(combined, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qr = qrCode.GetGraphic(150);
             image_qrcoder.Source = Convert(qr);
             Product.QRCode = Convert(qr);
+
         }
         #region BitmapImage Convert for QR-Code 
         public BitmapImage Convert(Bitmap src)
@@ -96,6 +97,5 @@ namespace Dialog_Window.Forms
             return image;
         }
         #endregion
-
     }
 }

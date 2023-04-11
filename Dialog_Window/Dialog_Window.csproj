@@ -22,10 +22,4 @@
     <PackageReference Include="QRCoder" Version="1.4.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="ProductCards.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

@@ -14,7 +14,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
             <ScrollViewer >
-            <ListBox x:Name="ProductsList" Grid.Row="0"  ItemsSource="{Binding ListProduct}" SelectedItem="{Binding SelectedProduct}">
+            <ListBox x:Name="ProductsList" Grid.Row="0"  ItemsSource="{Binding ListProduct}" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
