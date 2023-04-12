@@ -2,9 +2,12 @@
 using Dialog_Window.Models;
 using Microsoft.EntityFrameworkCore;
 using ModernWpf;
+using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,11 +45,34 @@ namespace Dialog_Window
             sqlite.Database.Migrate();
             List<Product> products = sqlite.Products.ToList();
             ProductsList.ItemsSource = products;
+            Product product = new Product();
+
+            //string combined = "Уникальный идентификатор: " + product.ID + "\r\n" + "Имя товара: " + product.Name + "\r\n" + "Описание товара: " + product.Description + "\r\n" + "Цена товара: " + product.Price + " RUB";
+            //QRCodeGenerator qrGenerator = new();
+            //QRCodeData qrCodeData = qrGenerator.CreateQrCode(combined, QRCodeGenerator.ECCLevel.Q);
+            //QRCode qrCode = new QRCode(qrCodeData);
+            //Bitmap qr = qrCode.GetGraphic(150);
+            ////product.QRCode = Convert(qr);
+
+            
+
+            //static BitmapImage Convert(Bitmap src)
+            //{
+            //    MemoryStream ms = new MemoryStream();
+            //    ((System.Drawing.Bitmap)src).Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+            //    BitmapImage image = new BitmapImage();
+            //    image.BeginInit();
+            //    ms.Seek(0, SeekOrigin.Begin);
+            //    image.StreamSource = ms;
+            //    image.EndInit();
+            //    return image;
+            //}
         }
 
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
             Forms.Dialog add = new Forms.Dialog();
+            Close();
             add.ShowDialog();
             ListProduct.Add(add.Product);
         }
@@ -88,13 +114,5 @@ namespace Dialog_Window
 
         }
 
-        private void btn_update_Click(object sender, RoutedEventArgs e)
-        {
-            using (var context = new Sqlite())
-            {
-                ProductsList.ItemsSource = context.Products.ToList();
-                
-            }
-        }
     }
 }

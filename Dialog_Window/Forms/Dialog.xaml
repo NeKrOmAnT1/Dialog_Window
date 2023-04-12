@@ -23,6 +23,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="btn_qrcode"  Style="{StaticResource AccentButtonStyle}" Click="btn_qrcode_Click"  Content="Сгенерировать QR-Code"  Height="40" Margin="5" Width="190"/>
                 <Button x:Name="btn_add" Style="{StaticResource AccentButtonStyle}" Click="btn_add_Click"  Content="Добавить"  Height="40" Margin="5" Width="190"/>
+                <Button x:Name="bnt_exit" Style="{StaticResource AccentButtonStyle}" Click="bnt_exit_Click" Content="Отмена"  Height="40" Margin="5" Width="190"/>
             </StackPanel>
         </StackPanel>
 

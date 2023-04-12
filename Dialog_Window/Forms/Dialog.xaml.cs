@@ -70,7 +70,9 @@ namespace Dialog_Window.Forms
                     MessageBox.Show(ex.Message);
                     return;
                 }
+                MainWindow mainWindow = new MainWindow();
                 this.Close();
+                mainWindow.ShowDialog();
             }
         }
         private void btn_qrcode_Click(object sender, RoutedEventArgs e)
@@ -97,5 +99,12 @@ namespace Dialog_Window.Forms
             return image;
         }
         #endregion
+
+        private void bnt_exit_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            Close();
+            mainWindow.ShowDialog();
+        }
     }
 }
