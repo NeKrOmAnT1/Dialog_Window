@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Dialog_Window.Forms"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d"
-        Title="Edit product cards" MinHeight="460" MaxHeight="460" MinWidth="800" MaxWidth="800" WindowStartupLocation="CenterScreen"
+        Title="Edit product cards" Height="460" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         ui:WindowHelper.UseModernWindowStyle="True">
     <Grid>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10">

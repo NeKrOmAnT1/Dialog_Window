@@ -6,7 +6,7 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:local="clr-namespace:Dialog_Window"
         mc:Ignorable="d"
-        Title="Product cards" Height="450" Width="800" WindowStartupLocation="CenterScreen"
+        Title="Product cards" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
          ui:WindowHelper.UseModernWindowStyle="True">
     <Grid>
         <Grid.RowDefinitions>
