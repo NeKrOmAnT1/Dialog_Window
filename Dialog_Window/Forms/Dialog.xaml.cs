@@ -39,14 +39,7 @@ namespace Dialog_Window.Forms
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
 
-            if (Product.QRCode == null)
-            {
-                MessageBox.Show("Необходимо сгенерировать QR-Code");
-                return;
-            }
-          
-            else
-            {
+            
                 try
                 {
                     Sqlite sqlite = new Sqlite();
@@ -73,32 +66,8 @@ namespace Dialog_Window.Forms
                 MainWindow mainWindow = new MainWindow();
                 this.Close();
                 mainWindow.ShowDialog();
-            }
+            
         }
-        private void btn_qrcode_Click(object sender, RoutedEventArgs e)
-        {
-            string combined = "Уникальный идентификатор: " + Product.ID + "\r\n" + "Имя товара: " + Product.Name + "\r\n" + "Описание товара: " + Product.Description + "\r\n" + "Цена товара: " + Product.Price + " RUB";
-            QRCodeGenerator qrGenerator = new();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(combined, QRCodeGenerator.ECCLevel.Q);
-            QRCode qrCode = new QRCode(qrCodeData);
-            Bitmap qr = qrCode.GetGraphic(150);
-            image_qrcoder.Source = Convert(qr);
-            Product.QRCode = Convert(qr);
-
-        }
-        #region BitmapImage Convert for QR-Code 
-        public BitmapImage Convert(Bitmap src)
-        {
-            MemoryStream ms = new MemoryStream();
-            ((System.Drawing.Bitmap)src).Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            ms.Seek(0, SeekOrigin.Begin);
-            image.StreamSource = ms;
-            image.EndInit();
-            return image;
-        }
-        #endregion
 
         private void bnt_exit_Click(object sender, RoutedEventArgs e)
         {

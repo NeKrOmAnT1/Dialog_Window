@@ -19,14 +19,10 @@
             <TextBlock Text="Уникальный идентификатор" TextAlignment="Center" FontSize="15"/>
             <TextBox Text="{Binding ID}" Name="tb_id" IsReadOnly="True"  TextWrapping="Wrap"  Width="260" Margin="5" Height="60"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="btn_qrcode"  Click="btn_qrcode_Click"  Content="Сгенерировать QR-Code"  Height="40" Margin="5" Width="190"/>
                 <Button x:Name="btn_add" Style="{StaticResource AccentButtonStyle}" Click="btn_add_Click"  Content="Сохранить изменения"  Height="40" Margin="5" Width="190"/>
                 <Button x:Name="btn_cancel" Click="btn_cancel_Click" Content="Отмена" Height="40" Margin="5" Width="190"/>
             </StackPanel>
         </StackPanel>
-        <Image Source="{Binding QRCode}" x:Name="image_qrcoder" Width="auto" Margin="62,150,588,150" Height="auto"/>
-
-        <TextBlock HorizontalAlignment="Left" Margin="100,280,0,0" TextWrapping="Wrap" Text="QR-Code" FontSize="15" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

@@ -46,29 +46,27 @@ namespace Dialog_Window
             sqlite.Database.Migrate();
             List<Product> products = sqlite.Products.ToList();
             ProductsList.ItemsSource = products;
-            //QRCodeGenerator qrGenerator = new QRCodeGenerator();
+          
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            foreach (Product product in products)
+            {
+                string combined = "Уникальный идентификатор: " + product.ID + "\r\n" + "Имя товара: " + product.Name + "\r\n" + "Описание товара: " + product.Description + "\r\n" + "Цена товара: " + product.Price + " RUB";
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(combined, QRCodeGenerator.ECCLevel.Q);
+                QRCode qrCode = new QRCode(qrCodeData);
+                BitmapImage qrCodeImage = new BitmapImage();
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    qrCode.GetGraphic(20).Save(stream, ImageFormat.Png);
+                    stream.Seek(0, SeekOrigin.Begin);
+                    qrCodeImage.BeginInit();
+                    qrCodeImage.CacheOption = BitmapCacheOption.OnLoad;
+                    qrCodeImage.StreamSource = stream;
+                    qrCodeImage.EndInit();
+                }
 
-            //foreach (Product product in products)
-            //{
-            //    string combined = "Уникальный идентификатор: " + product.ID + "\r\n" + "Имя товара: " + product.Name + "\r\n" + "Описание товара: " + product.Description + "\r\n" + "Цена товара: " + product.Price + " RUB";
-            //    QRCodeData qrCodeData = qrGenerator.CreateQrCode(combined, QRCodeGenerator.ECCLevel.Q);
-            //    QRCode qrCode = new QRCode(qrCodeData);
-            //    BitmapImage qrCodeImage = new BitmapImage();
-            //    using (MemoryStream stream = new MemoryStream())
-            //    {
-            //        qrCode.GetGraphic(20).Save(stream, ImageFormat.Png);
-            //        stream.Seek(0, SeekOrigin.Begin);
-            //        qrCodeImage.BeginInit();
-            //        qrCodeImage.CacheOption = BitmapCacheOption.OnLoad;
-            //        qrCodeImage.StreamSource = stream;
-            //        qrCodeImage.EndInit();
-            //    }
-
-            //    ListProduct.Add(new Product { Name = product.Name, Price = product.Price, QRCode = qrCodeImage, Description = product.Description, ID = product.ID });
-            //}
-
-            //ProductsList.ItemsSource = ListProduct;
-
+                ListProduct.Add(new Product { Name = product.Name, Price = product.Price, QRCode = qrCodeImage, Description = product.Description, ID = product.ID });
+            }
+            ProductsList.ItemsSource = ListProduct;
         }
 
         private void btn_add_Click(object sender, RoutedEventArgs e)
@@ -76,7 +74,6 @@ namespace Dialog_Window
             Forms.Dialog add = new Forms.Dialog();
             Close();
             add.ShowDialog();
-            ListProduct.Add(add.Product);
         }
 
 
@@ -84,6 +81,7 @@ namespace Dialog_Window
         {
             if (ProductsList.SelectedItem != null)
             {
+         
                 var product = ProductsList.SelectedItem as Product;
                 if (new Forms.Edit_Product(product).ShowDialog() == true)
                 {
@@ -94,7 +92,10 @@ namespace Dialog_Window
                     }
                     ProductsList.Items.Refresh();
                 }
-            }
+            } 
+            MainWindow mainWindow = new MainWindow();
+            Close();
+            mainWindow.ShowDialog();
         }
         private void btn_delete_Click(object sender, RoutedEventArgs e)
         {
@@ -110,10 +111,14 @@ namespace Dialog_Window
                         context.Products.Remove(product);
                         context.SaveChanges();
                         ProductsList.ItemsSource = context.Products.ToList();
+                        
+
                     }
                 }
             }
-
+            MainWindow mainWindow = new MainWindow();
+            Close();
+            mainWindow.ShowDialog();
         }
 
     }
