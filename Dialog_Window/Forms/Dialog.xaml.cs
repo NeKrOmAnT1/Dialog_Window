@@ -47,7 +47,7 @@ namespace Dialog_Window.Forms
                     {
                         Price = Product.Price,
                         Name = Product.Name,
-                        ID = Guid.NewGuid(),
+                        ID = Product.ID,
                         Description = Product.Description
                     };
 
